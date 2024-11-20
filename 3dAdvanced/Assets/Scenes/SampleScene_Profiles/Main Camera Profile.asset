@@ -176,7 +176,7 @@ MonoBehaviour:
     value: {x: 0.85548234, y: 1, z: 0.9415319, w: 0}
   gain:
     overrideState: 1
-    value: {x: 0.80634964, y: 0.85825086, z: 1, w: 0}
+    value: {x: 0.9921832, y: 1, z: 0.98934984, w: 0}
   masterCurve:
     overrideState: 1
     value:
@@ -1512,23 +1512,23 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   filtering:
-    overrideState: 0
+    overrideState: 1
     value: {x: 50, y: 95}
   minLuminance:
-    overrideState: 0
+    overrideState: 1
     value: 0
   maxLuminance:
-    overrideState: 0
+    overrideState: 1
     value: 0
   keyValue:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 2
   eyeAdaptation:
-    overrideState: 0
+    overrideState: 1
     value: 0
   speedUp:
-    overrideState: 0
+    overrideState: 1
     value: 2
   speedDown:
-    overrideState: 0
+    overrideState: 1
     value: 1
