@@ -27,7 +27,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.197
+    value: 0.309
   smoothness:
     overrideState: 1
     value: 1
@@ -61,11 +61,11 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   shutterAngle:
-    overrideState: 0
-    value: 270
+    overrideState: 1
+    value: 0
   sampleCount:
-    overrideState: 0
-    value: 10
+    overrideState: 1
+    value: 4
 --- !u!114 &-3100185697007776451
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -170,13 +170,13 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 1
-    value: {x: 1, y: 0.88318586, z: 0.9900788, w: 0}
+    value: {x: 0.97616094, y: 0.9138882, z: 1, w: -0.0811124}
   gamma:
     overrideState: 1
-    value: {x: 0.85548234, y: 1, z: 0.9415319, w: 0}
+    value: {x: 0.85548234, y: 1, z: 0.9415319, w: -0.01854005}
   gain:
     overrideState: 1
-    value: {x: 0.9921832, y: 1, z: 0.98934984, w: 0}
+    value: {x: 0.9921832, y: 1, z: 0.98934984, w: 0.020858044}
   masterCurve:
     overrideState: 1
     value:
@@ -1464,7 +1464,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 1.11
+    value: 2.54
   color:
     overrideState: 1
     value: {r: 0.509434, g: 0.4104308, b: 0.4104308, a: 1}
@@ -1485,7 +1485,7 @@ MonoBehaviour:
     value: 1
   zBias:
     overrideState: 1
-    value: 0.0001
+    value: 0
   directLightingStrength:
     overrideState: 0
     value: 0
