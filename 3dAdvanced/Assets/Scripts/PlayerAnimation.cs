@@ -6,14 +6,8 @@ public class PlayerAnimation : MonoBehaviour
 {
     public Animator animator;
     public readonly string MOVE_ANIM_PARAM = "Move";
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public readonly string IS_AIMING_ANIM_PARAM = "IsAiming";
+    public readonly string FIRING_RIFLE_ANIM = "Firing Rifle"; 
+    public readonly string RIFLE_AIM_IDLE_ANIM = "Rifle Aim Idle"; 
+    
 }
