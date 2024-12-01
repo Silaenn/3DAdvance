@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Movement(){
 
-        if(IsGrounded()) playerVelocity.y = 2f;
+        if(IsGrounded()) playerVelocity.y = -2f;
 
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
