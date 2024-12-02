@@ -29,6 +29,7 @@ public class PlayerShoot : MonoBehaviour
         }
         if(Input.GetMouseButtonUp(0)){
             playerManager.playerAnimation.animator.SetBool(playerManager.playerAnimation.IS_AIMING_ANIM_PARAM, false);
+            playerManager.playerAnimation.animator.CrossFade(playerManager.playerAnimation.FIRING_RIFLE_ANIM, 0.2f);
         }
     }
 
@@ -37,6 +38,7 @@ public class PlayerShoot : MonoBehaviour
         rifleModel.SetActive(true);
         playerManager.playerAnimation.animator.SetInteger(playerManager.playerAnimation.WEAPON_STATE_ANIM_PARAM, 1);
     }
+    
     void AimShot(){
         if(!hasWeapon) return;
 
