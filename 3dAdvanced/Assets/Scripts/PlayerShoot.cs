@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
+    [Header("Player State")]
     public bool isAiming;
     public bool hasWeapon;
-    [SerializeField] private GameObject rifleModel;
+
+    [Header("Cameras")]
     [SerializeField] private GameObject aimingCam;
     [SerializeField] private Transform mainCamera;
+
+    [Header("Shooting Logic")]
+    [SerializeField] private GameObject rifleModel;
     [SerializeField] private float shootingRange;
     [SerializeField] private float fireRateCd;
+    [SerializeField] private float rifleAttackDamage;
     [SerializeField] private bool isAttackCd;
+
+    [Header("Visual Effects")]
     [SerializeField] private GameObject muzzleFlashVfx;
     [SerializeField] private GameObject bulletImpactVfx;
+    [SerializeField] private GameObject bloodImpactVfx;
 
     private PlayerManager playerManager;
     void Start()
@@ -79,7 +88,14 @@ public class PlayerShoot : MonoBehaviour
         muzzleFlashVfx.SetActive(true);
         StartCoroutine(ShootCoroutine());
         if(Physics.Raycast(mainCamera.position, mainCamera.forward, out RaycastHit hit , shootingRange)){
-            var effect =  Instantiate(bulletImpactVfx, hit.point, Quaternion.identity);
+            GameObject effect = null;
+            if(hit.collider.GetComponent<Health>()){
+                hit.collider.GetComponent<Health>().TakeDamage(rifleAttackDamage);
+
+                effect = Instantiate(bloodImpactVfx, hit.point, Quaternion.identity);
+            } else {
+                effect = Instantiate(bulletImpactVfx, hit.point, Quaternion.identity);
+            }
             effect.transform.LookAt(transform);
             print(hit.collider.gameObject.name);
         }
