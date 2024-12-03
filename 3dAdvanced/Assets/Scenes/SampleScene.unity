@@ -1760,6 +1760,11 @@ MonoBehaviour:
   hasWeapon: 1
   rifleModel: {fileID: 1137724513}
   aimingCam: {fileID: 350999915}
+  mainCamera: {fileID: 963194228}
+  shootingRange: 100
+  fireRateCd: 0.1
+  isAttackCd: 0
+  bulletImpactVfx: {fileID: 100002, guid: ac1aa04288fad804ba1cd769f4377aaf, type: 3}
 --- !u!114 &2011623331
 MonoBehaviour:
   m_ObjectHideFlags: 0

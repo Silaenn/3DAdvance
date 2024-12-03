@@ -8,6 +8,13 @@ public class PlayerShoot : MonoBehaviour
     public bool hasWeapon;
     [SerializeField] private GameObject rifleModel;
     [SerializeField] private GameObject aimingCam;
+    [SerializeField] private Transform mainCamera;
+    [SerializeField] private float shootingRange;
+    [SerializeField] private float fireRateCd;
+    [SerializeField] private bool isAttackCd;
+    [SerializeField] private GameObject muzzleFlashVfx;
+    [SerializeField] private GameObject bulletImpactVfx;
+
     private PlayerManager playerManager;
     void Start()
     {
@@ -28,8 +35,13 @@ public class PlayerShoot : MonoBehaviour
             playerManager.playerAnimation.animator.CrossFade(playerManager.playerAnimation.FIRING_RIFLE_ANIM, 0.2f);
         }
         if(Input.GetMouseButtonUp(0)){
+            muzzleFlashVfx.SetActive(false);
             playerManager.playerAnimation.animator.SetBool(playerManager.playerAnimation.IS_AIMING_ANIM_PARAM, false);
             playerManager.playerAnimation.animator.CrossFade(playerManager.playerAnimation.FIRING_RIFLE_ANIM, 0.2f);
+        }
+
+        if(Input.GetMouseButton(0)){
+            Shoot();
         }
     }
 
@@ -48,9 +60,28 @@ public class PlayerShoot : MonoBehaviour
             isAiming = true;
             aimingCam.SetActive(true);
         } else if(Input.GetMouseButtonUp(1)){
+            muzzleFlashVfx.SetActive(false);
             playerManager.playerAnimation.animator.SetBool(playerManager.playerAnimation.IS_AIMING_ANIM_PARAM, false);
             isAiming = false;
             aimingCam.SetActive(false);
+        }
+    }
+
+    IEnumerator ShootCoroutine(){
+        isAttackCd = true;
+        yield return new WaitForSeconds(fireRateCd);
+        isAttackCd = false;
+    }
+      void Shoot(){
+
+        if (isAttackCd) return;
+
+        muzzleFlashVfx.SetActive(true);
+        StartCoroutine(ShootCoroutine());
+        if(Physics.Raycast(mainCamera.position, mainCamera.forward, out RaycastHit hit , shootingRange)){
+            var effect =  Instantiate(bulletImpactVfx, hit.point, Quaternion.identity);
+            effect.transform.LookAt(transform);
+            print(hit.collider.gameObject.name);
         }
     }
 }
