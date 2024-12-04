@@ -16,7 +16,11 @@ public class LootItem : MonoBehaviour
         if(other.TryGetComponent(out PlayerShoot playerShoot)){
             playerShoot.OnGettingWeapon();
             Destroy(gameObject);
-        }
+        } 
+        if(other.TryGetComponent(out EnemyController enemyController)){
+            enemyController.SetLookingForEnemyState();
+            Destroy(gameObject);
+        } 
      }
    }
 }

@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnemyAnimation : MonoBehaviour
 {
     public readonly string DEAD_ANIM = "Death";
+    public readonly string RIFLE_RUN_ANIM = "Rifle Run";
     public Animator animator;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
