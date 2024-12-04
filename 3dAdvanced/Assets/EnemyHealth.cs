@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyHealth : Health
 {
     private EnemyManager enemyManager;
+    [SerializeField] private Collider aliveColider;
+    [SerializeField] private Collider deadColider;
 
     private void Awake() {
         enemyManager = GetComponent<EnemyManager>();
@@ -12,6 +14,8 @@ public class EnemyHealth : Health
     public override void Dead()
     {
         base.Dead();
+        aliveColider.enabled = false;
+        deadColider.enabled = true;
         enemyManager.enemyAnimation.animator.CrossFade(enemyManager.enemyAnimation.DEAD_ANIM, 0.2f);
     }
 }

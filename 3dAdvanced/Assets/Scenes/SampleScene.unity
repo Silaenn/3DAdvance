@@ -1333,6 +1333,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2879638226077887112, guid: 207c0b1c270ecbf499f54341a10d7315, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c09ac29acf83f264a8117b3d8eaa05f0, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1343,6 +1347,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2233508560471107408, guid: 207c0b1c270ecbf499f54341a10d7315, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6883987865047866270}
+    - targetCorrespondingSourceObject: {fileID: 2233508560471107408, guid: 207c0b1c270ecbf499f54341a10d7315, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6883987865047866277}
   m_SourcePrefab: {fileID: 100100000, guid: 207c0b1c270ecbf499f54341a10d7315, type: 3}
 --- !u!1 &6883987865047866266 stripped
 GameObject:
@@ -1387,6 +1394,27 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 0
   isDead: 0
+--- !u!65 &6883987865047866277
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883987865047866266}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.8109468, y: 1.2967205, z: 4.8052216}
+  m_Center: {x: 0.4054733, y: 0.14836025, z: -2.6059303}
 --- !u!1001 &7840628800555411557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1447,6 +1475,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 963194228}
+    - target: {fileID: 8986940362359736973, guid: a7447e494dfc72c45b83d39f9ab7ae67, type: 3}
+      propertyPath: bloodImpactVfx
+      value: 
+      objectReference: {fileID: 5179497119465001873, guid: cb8555587d8ea2b4d82ded02b282f8c5, type: 3}
     - target: {fileID: 8986940362359736973, guid: a7447e494dfc72c45b83d39f9ab7ae67, type: 3}
       propertyPath: rifleAttackDamage
       value: 5
