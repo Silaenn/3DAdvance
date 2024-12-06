@@ -176,6 +176,7 @@ MonoBehaviour:
   rifleModel: {fileID: 86351022082765715}
   muzzleFlashVfx: {fileID: 9163678497159532815}
   startShootingRange: 20
+  stopShootingRange: 40
 --- !u!195 &332298574599154709
 NavMeshAgent:
   m_ObjectHideFlags: 0
