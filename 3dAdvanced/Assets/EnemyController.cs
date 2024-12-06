@@ -77,6 +77,8 @@ public class EnemyController : MonoBehaviour
         GameObject nearestTarget = null;
 
         foreach (Transform target in targetParent){
+            if (target == transform) continue;
+            
             var distanceCurrentTarget = (target.transform.position - transform.position).sqrMagnitude;
 
             if(distanceCurrentTarget < distanceNearestTarget){
