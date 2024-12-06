@@ -170,11 +170,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eNEMY_STATE: 0
   movementSpeed: 5
-  playerTarget: {fileID: 0}
   enemyTarget: {fileID: 0}
   weaponLootParent: {fileID: 0}
   charckterParent: {fileID: 0}
   rifleModel: {fileID: 86351022082765715}
+  muzzleFlashVfx: {fileID: 9163678497159532815}
+  startShootingRange: 20
 --- !u!195 &332298574599154709
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -470,5 +471,10 @@ PrefabInstance:
 --- !u!4 &9163678497159499055 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: f47cb9d88f4bc6c4bb7441e962c2c1a5, type: 3}
+  m_PrefabInstance: {fileID: 9163678497159632809}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9163678497159532815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100006, guid: f47cb9d88f4bc6c4bb7441e962c2c1a5, type: 3}
   m_PrefabInstance: {fileID: 9163678497159632809}
   m_PrefabAsset: {fileID: 0}

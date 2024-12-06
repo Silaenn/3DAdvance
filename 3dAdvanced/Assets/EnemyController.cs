@@ -16,11 +16,17 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private ENEMY_STATE eNEMY_STATE;
     [SerializeField] private float movementSpeed;
     private NavMeshAgent navMeshAgent;
-    public Transform playerTarget;
+
+
     public Transform enemyTarget;
     public Transform weaponLootParent;
     public Transform charckterParent;
     [SerializeField] private GameObject rifleModel;
+    [SerializeField] private GameObject muzzleFlashVfx;
+
+    [SerializeField] private float startShootingRange;
+    [SerializeField] private float stopShootingRange;
+
 
     private EnemyManager enemyManager;
 
@@ -54,14 +60,21 @@ public class EnemyController : MonoBehaviour
               try
               {
               enemyTarget = FindNearestTarget(charckterParent).transform; 
-              navMeshAgent.destination = playerTarget.position;  
-              }
+              navMeshAgent.destination = enemyTarget.position;  
+              if(Vector3.Distance(transform.position, enemyTarget.position) < startShootingRange){
+                  SetAttackingEnemyState();
+              } 
+            }
               catch (System.Exception)
               {
                 print("Target not found");
               } 
             ; break;
-            case ENEMY_STATE.ATTACKING_ENEMY:  ; break;
+            case ENEMY_STATE.ATTACKING_ENEMY:  
+               if(Vector3.Distance(transform.position, enemyTarget.position) > stopShootingRange){
+                  SetLookingForEnemyState();
+              } 
+            ; break;
             case ENEMY_STATE.IS_DEAD:  ; break;
         }
     }
@@ -70,6 +83,16 @@ public class EnemyController : MonoBehaviour
         eNEMY_STATE = ENEMY_STATE.LOOKING_FOR_ENEMY;
         rifleModel.SetActive(true);
         enemyManager.enemyAnimation.animator.CrossFade(enemyManager.enemyAnimation.RIFLE_RUN_ANIM, 0.2f);
+        muzzleFlashVfx.SetActive(false);
+        navMeshAgent.isStopped = false;
+    }
+
+    public void SetAttackingEnemyState(){
+        eNEMY_STATE = ENEMY_STATE.ATTACKING_ENEMY;
+        rifleModel.SetActive(true);
+        enemyManager.enemyAnimation.animator.CrossFade(enemyManager.enemyAnimation.FIRING_RIFLE_ANIM, 0.2f);
+        muzzleFlashVfx.SetActive(true);
+        navMeshAgent.isStopped = true;
     }
 
     GameObject FindNearestTarget(Transform targetParent){
