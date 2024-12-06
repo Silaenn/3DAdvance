@@ -10,5 +10,6 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
     public Transform weaponLootParent;
-    
+    public Transform charckterParent;
+
 }

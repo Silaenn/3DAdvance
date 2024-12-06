@@ -93,4 +93,6 @@ public class PlayerMovement : MonoBehaviour
     void MoveCharacter(Vector3 move){
          _characterController.Move(move.normalized * movementSpeed * Time.deltaTime);
     }
+
+  
 }

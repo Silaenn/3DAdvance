@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
     public Transform playerTarget;
     public Transform enemyTarget;
     public Transform weaponLootParent;
+    public Transform charckterParent;
     [SerializeField] private GameObject rifleModel;
 
     private EnemyManager enemyManager;
@@ -31,16 +32,34 @@ public class EnemyController : MonoBehaviour
 
     private void Start() {
         weaponLootParent = GameManager.Instance.weaponLootParent;
+        charckterParent = GameManager.Instance.charckterParent;
         eNEMY_STATE = ENEMY_STATE.LOOKING_FOR_WEAPON;
     }
 
     private void Update() {
 
         switch(eNEMY_STATE){
-            case ENEMY_STATE.LOOKING_FOR_WEAPON: enemyTarget = FindNearestTarget().transform; 
-            navMeshAgent.destination = enemyTarget.position; break;
-            case ENEMY_STATE.LOOKING_FOR_ENEMY:  
-              navMeshAgent.destination = playerTarget.position;
+            case ENEMY_STATE.LOOKING_FOR_WEAPON: 
+            try
+            {
+            enemyTarget = FindNearestTarget(weaponLootParent).transform; 
+            navMeshAgent.destination = enemyTarget.position;
+            }
+            catch (System.Exception e)
+            {
+                print("Target not found");
+            }
+             break;
+            case ENEMY_STATE.LOOKING_FOR_ENEMY: 
+              try
+              {
+              enemyTarget = FindNearestTarget(charckterParent).transform; 
+              navMeshAgent.destination = playerTarget.position;  
+              }
+              catch (System.Exception)
+              {
+                print("Target not found");
+              } 
             ; break;
             case ENEMY_STATE.ATTACKING_ENEMY:  ; break;
             case ENEMY_STATE.IS_DEAD:  ; break;
@@ -53,20 +72,18 @@ public class EnemyController : MonoBehaviour
         enemyManager.enemyAnimation.animator.CrossFade(enemyManager.enemyAnimation.RIFLE_RUN_ANIM, 0.2f);
     }
 
-    GameObject FindNearestTarget(){
+    GameObject FindNearestTarget(Transform targetParent){
         var distanceNearestTarget = Mathf.Infinity;
         GameObject nearestTarget = null;
 
-        foreach (Transform weapon in weaponLootParent){
-            var distanceCurrentTarget = (weapon.transform.position - transform.position).sqrMagnitude;
+        foreach (Transform target in targetParent){
+            var distanceCurrentTarget = (target.transform.position - transform.position).sqrMagnitude;
 
             if(distanceCurrentTarget < distanceNearestTarget){
                 distanceNearestTarget = distanceCurrentTarget;
-                nearestTarget = weapon.gameObject;
+                nearestTarget = target.gameObject;
             }
-
         }
-
         return nearestTarget;
     }
   
