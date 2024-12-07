@@ -23,11 +23,15 @@ public class EnemyController : MonoBehaviour
     public Transform charckterParent;
     [SerializeField] private GameObject rifleModel;
     [SerializeField] private GameObject muzzleFlashVfx;
+    [SerializeField] private Transform shootPoint;
+    [SerializeField] private GameObject bulletPrefab;
 
     [SerializeField] private float startShootingRange;
     [SerializeField] private float stopShootingRange;
 
-
+    [SerializeField] private float shootingCd;
+    [SerializeField] private float defaultShootingCd;
+    
     private EnemyManager enemyManager;
 
     private void Awake() {
@@ -43,7 +47,8 @@ public class EnemyController : MonoBehaviour
     }
 
     private void Update() {
-
+        if(enemyManager.enemyHealth.isDead) return;
+        
         switch(eNEMY_STATE){
             case ENEMY_STATE.LOOKING_FOR_WEAPON: 
             try
@@ -71,6 +76,7 @@ public class EnemyController : MonoBehaviour
               } 
             ; break;
             case ENEMY_STATE.ATTACKING_ENEMY:  
+               Shoot();
                if(Vector3.Distance(transform.position, enemyTarget.position) > stopShootingRange){
                   SetLookingForEnemyState();
               } 
@@ -110,6 +116,14 @@ public class EnemyController : MonoBehaviour
             }
         }
         return nearestTarget;
+    }
+
+    void Shoot(){
+        shootingCd -= Time.deltaTime;
+        if (shootingCd <= 0){
+            shootingCd = defaultShootingCd;
+            Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+        }
     }
   
 }
