@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     private NavMeshAgent navMeshAgent;
 
 
+    private Health enemyTargetHealth;
     public Transform enemyTarget;
     public Transform weaponLootParent;
     public Transform charckterParent;
@@ -88,6 +89,10 @@ public class EnemyController : MonoBehaviour
     }
 
     public void SetLookingForEnemyState(){
+        if(enemyTarget != null) {
+            enemyTargetHealth = enemyTarget.GetComponent<Health>();
+            enemyTargetHealth.onDead.AddListener(TargetIsDead);
+        }
         eNEMY_STATE = ENEMY_STATE.LOOKING_FOR_ENEMY;
         rifleModel.SetActive(true);
         enemyManager.enemyAnimation.animator.CrossFade(enemyManager.enemyAnimation.RIFLE_RUN_ANIM, 0.2f);
@@ -96,6 +101,8 @@ public class EnemyController : MonoBehaviour
     }
 
     public void SetAttackingEnemyState(){
+        enemyTargetHealth = enemyTarget.GetComponent<Health>();
+        enemyTargetHealth.onDead.AddListener(TargetIsDead);
         eNEMY_STATE = ENEMY_STATE.ATTACKING_ENEMY;
         rifleModel.SetActive(true);
         enemyManager.enemyAnimation.animator.CrossFade(enemyManager.enemyAnimation.FIRING_RIFLE_ANIM, 0.2f);
@@ -107,6 +114,11 @@ public class EnemyController : MonoBehaviour
         rifleModel.SetActive(true);
         muzzleFlashVfx.SetActive(false);
         navMeshAgent.isStopped = true;
+    }
+
+    void TargetIsDead(){
+        enemyTargetHealth.onDead.RemoveListener(TargetIsDead);
+        SetLookingForEnemyState();
     }
 
     GameObject FindNearestTarget(Transform targetParent){

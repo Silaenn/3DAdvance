@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class Health : MonoBehaviour
     }
 
     public bool isDead;
+    [HideInInspector] public UnityEvent onDead;
     void Start()
     {
         currentHp = maxHp;
@@ -43,6 +45,7 @@ public class Health : MonoBehaviour
 
     public virtual void Dead(){
         print("this carakter dead");
+        onDead?.Invoke();
         isDead = true;
     }
 }
