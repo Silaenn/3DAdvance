@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     [Header("Health Point")]
-    [SerializeField] private float maxHp;
+    [SerializeField] protected float maxHp;
     [SerializeField] private float currentHp;
     public float CurrentHp{
         get => currentHp;
@@ -19,7 +19,6 @@ public class Health : MonoBehaviour
             }
         }
     }
-
     public bool isDead;
     [HideInInspector] public UnityEvent onDead;
     void Start()
@@ -27,7 +26,6 @@ public class Health : MonoBehaviour
         currentHp = maxHp;
     }
 
-    // Update is called once per frame
     void Update()
     {
         

@@ -1,13 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : Health
 {
     private PlayerManager playerManager;
+    [SerializeField] private Image healthBarImage;
 
     private void Awake() {
         playerManager = GetComponent<PlayerManager>();
+    }
+
+    public override void OnChangeHealth()
+    {
+        base.OnChangeHealth();
+        healthBarImage.fillAmount = CurrentHp / maxHp;
     }
     public override void Dead()
     {
