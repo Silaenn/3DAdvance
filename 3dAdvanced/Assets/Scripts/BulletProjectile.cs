@@ -18,6 +18,7 @@ public class BulletProjectile : MonoBehaviour
         if(other.GetComponent<Health>()){
             Instantiate(bloodVfx, transform.position, Quaternion.identity);
             other.GetComponent<Health>().TakeDamage(bulletDamage);
+            Destroy(gameObject);
         }
     }
 }
