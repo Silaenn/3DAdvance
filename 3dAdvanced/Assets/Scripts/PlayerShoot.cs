@@ -97,7 +97,6 @@ public class PlayerShoot : MonoBehaviour
                 effect = Instantiate(bulletImpactVfx, hit.point, Quaternion.identity);
             }
             effect.transform.LookAt(transform);
-            print(hit.collider.gameObject.name);
         }
     }
 }

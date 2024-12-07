@@ -90,8 +90,10 @@ public class EnemyController : MonoBehaviour
 
     public void SetLookingForEnemyState(){
         if(enemyTarget != null) {
-            enemyTargetHealth = enemyTarget.GetComponent<Health>();
-            enemyTargetHealth.onDead.AddListener(TargetIsDead);
+            if(enemyTarget.TryGetComponent(out Health health)){
+                enemyTargetHealth = health;
+                enemyTargetHealth.onDead.AddListener(TargetIsDead);
+            }
         }
         eNEMY_STATE = ENEMY_STATE.LOOKING_FOR_ENEMY;
         rifleModel.SetActive(true);
@@ -110,6 +112,9 @@ public class EnemyController : MonoBehaviour
         navMeshAgent.isStopped = true;
     }
     public void SetEnemyIsDead(){
+        if (enemyTargetHealth != null) {
+            enemyTargetHealth.onDead.RemoveListener(TargetIsDead);
+        }
         eNEMY_STATE = ENEMY_STATE.IS_DEAD;
         rifleModel.SetActive(true);
         muzzleFlashVfx.SetActive(false);
@@ -127,6 +132,10 @@ public class EnemyController : MonoBehaviour
 
         foreach (Transform target in targetParent){
             if (target == transform) continue;
+
+            if(target.TryGetComponent(out Health health)){
+                if(health.isDead) continue;
+            }
             
             var distanceCurrentTarget = (target.transform.position - transform.position).sqrMagnitude;
 
