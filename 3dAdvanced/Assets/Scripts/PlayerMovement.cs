@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(playerManager.playerHealth.isDead) return;
+
         Movement();    
     }
 

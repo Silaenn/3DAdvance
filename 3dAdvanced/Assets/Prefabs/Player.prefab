@@ -210,7 +210,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 5
-  m_Radius: 0.36
+  m_Radius: 0.53
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -280,14 +280,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAiming: 0
   hasWeapon: 1
-  rifleModel: {fileID: 6243843826958062852}
   aimingCam: {fileID: 9218519904107201637}
   mainCamera: {fileID: 0}
+  rifleModel: {fileID: 6243843826958062852}
   shootingRange: 100
   fireRateCd: 0.1
+  rifleAttackDamage: 0
   isAttackCd: 0
   muzzleFlashVfx: {fileID: 7971028076902655706}
   bulletImpactVfx: {fileID: 100002, guid: ac1aa04288fad804ba1cd769f4377aaf, type: 3}
+  bloodImpactVfx: {fileID: 0}
 --- !u!114 &3484580669307185927
 MonoBehaviour:
   m_ObjectHideFlags: 0

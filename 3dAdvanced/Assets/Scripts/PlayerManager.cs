@@ -7,4 +7,5 @@ public class PlayerManager : MonoBehaviour
   public PlayerMovement playerMovement;
   public PlayerAnimation playerAnimation;
   public PlayerShoot playerShoot;
+  public PlayerHealth playerHealth;
 }
