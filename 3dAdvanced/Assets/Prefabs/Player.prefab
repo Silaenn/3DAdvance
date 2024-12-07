@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 5277859696113360803}
   - component: {fileID: 8986940362359736973}
   - component: {fileID: 3484580669307185927}
+  - component: {fileID: 7758976799443128896}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -266,6 +267,7 @@ MonoBehaviour:
   playerMovement: {fileID: 6893236453651224875}
   playerAnimation: {fileID: 4869176119029754342}
   playerShoot: {fileID: 8986940362359736973}
+  playerHealth: {fileID: 7758976799443128896}
 --- !u!114 &8986940362359736973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,11 +287,11 @@ MonoBehaviour:
   rifleModel: {fileID: 6243843826958062852}
   shootingRange: 100
   fireRateCd: 0.1
-  rifleAttackDamage: 0
+  rifleAttackDamage: 5
   isAttackCd: 0
   muzzleFlashVfx: {fileID: 7971028076902655706}
   bulletImpactVfx: {fileID: 100002, guid: ac1aa04288fad804ba1cd769f4377aaf, type: 3}
-  bloodImpactVfx: {fileID: 0}
+  bloodImpactVfx: {fileID: 5179497119465001873, guid: cb8555587d8ea2b4d82ded02b282f8c5, type: 3}
 --- !u!114 &3484580669307185927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +304,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3128c0087b30294eaed91dffe7b0c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7758976799443128896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4122425869153511007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d18bafa84b8e2d4b80bc6a420c92191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
+  currentHp: 0
+  isDead: 0
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8274071142193807970
 GameObject:
   m_ObjectHideFlags: 0

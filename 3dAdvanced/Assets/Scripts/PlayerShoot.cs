@@ -31,7 +31,10 @@ public class PlayerShoot : MonoBehaviour
     }
 
     void Update()
-    {   AimShot();
+    {   
+        if(playerManager.playerHealth.isDead) return;
+
+        AimShot();
         ShootInput();
     }
 
@@ -98,5 +101,11 @@ public class PlayerShoot : MonoBehaviour
             }
             effect.transform.LookAt(transform);
         }
+    }
+
+    public void OnDead(){
+        muzzleFlashVfx.SetActive(false);
+        isAiming = false;
+        aimingCam.SetActive(false);
     }
 }
