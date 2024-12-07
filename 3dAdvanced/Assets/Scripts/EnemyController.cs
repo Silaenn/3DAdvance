@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update() {
         if(enemyManager.enemyHealth.isDead) return;
-        
+
         switch(eNEMY_STATE){
             case ENEMY_STATE.LOOKING_FOR_WEAPON: 
             try
@@ -81,7 +81,9 @@ public class EnemyController : MonoBehaviour
                   SetLookingForEnemyState();
               } 
             ; break;
-            case ENEMY_STATE.IS_DEAD:  ; break;
+            case ENEMY_STATE.IS_DEAD:  
+             
+            ; break;
         }
     }
 
@@ -98,6 +100,12 @@ public class EnemyController : MonoBehaviour
         rifleModel.SetActive(true);
         enemyManager.enemyAnimation.animator.CrossFade(enemyManager.enemyAnimation.FIRING_RIFLE_ANIM, 0.2f);
         muzzleFlashVfx.SetActive(true);
+        navMeshAgent.isStopped = true;
+    }
+    public void SetEnemyIsDead(){
+        eNEMY_STATE = ENEMY_STATE.IS_DEAD;
+        rifleModel.SetActive(true);
+        muzzleFlashVfx.SetActive(false);
         navMeshAgent.isStopped = true;
     }
 
@@ -119,6 +127,7 @@ public class EnemyController : MonoBehaviour
     }
 
     void Shoot(){
+        transform.LookAt(enemyTarget);
         shootingCd -= Time.deltaTime;
         if (shootingCd <= 0){
             shootingCd = defaultShootingCd;

@@ -6,4 +6,5 @@ public class EnemyManager : MonoBehaviour
 {
     public Health enemyHealth;
     public EnemyAnimation enemyAnimation;
+    public EnemyController enemyController;
 }

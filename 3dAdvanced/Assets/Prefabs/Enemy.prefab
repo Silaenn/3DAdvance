@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: {fileID: 9046650670759085913}
   enemyAnimation: {fileID: 4456401426768165331}
+  enemyController: {fileID: 4653771057090828577}
 --- !u!114 &9046650670759085913
 MonoBehaviour:
   m_ObjectHideFlags: 0

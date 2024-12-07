@@ -16,6 +16,7 @@ public class EnemyHealth : Health
         base.Dead();
         aliveColider.enabled = false;
         deadColider.enabled = true;
+        enemyManager.enemyController.SetEnemyIsDead();
         enemyManager.enemyAnimation.animator.CrossFade(enemyManager.enemyAnimation.DEAD_ANIM, 0.2f);
     }
 }
