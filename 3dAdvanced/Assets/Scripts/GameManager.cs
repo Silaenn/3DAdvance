@@ -58,10 +58,11 @@ public class GameManager : MonoBehaviour
     public void GameOver(){
         Time.timeScale = 0.5f;
         gameOverCanvas.SetActive(true);
-        rankText.text = $"Rank: {CurrentAliveCharacters + 1} / {totalAliveCharacters}";
         if(playerWin){
             winCanvas.SetActive(true);
+            rankText.text = $"Rank: <color=green>1</color> / {totalAliveCharacters}";
         } else{
+            rankText.text = $"Rank: <color=red>{CurrentAliveCharacters + 1}</color> / {totalAliveCharacters}";
             loseCanvas.SetActive(true);
         }
         print("Game Over");
