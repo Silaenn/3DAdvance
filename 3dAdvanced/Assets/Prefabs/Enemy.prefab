@@ -119,6 +119,12 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 0
   isDead: 0
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
+  isOutsideSafeZone: 0
+  tickTimerDamageOutsideSafeZone: 0
+  defaultTickTimerDamageOutsideSafeZone: 1
   aliveColider: {fileID: 6253599458404104552}
   deadColider: {fileID: 861741461425932525}
 --- !u!114 &2251775463857837994
@@ -136,6 +142,12 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 0
   isDead: 0
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
+  isOutsideSafeZone: 0
+  tickTimerDamageOutsideSafeZone: 0
+  defaultTickTimerDamageOutsideSafeZone: 0
 --- !u!65 &861741461425932525
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -21,6 +21,11 @@ public class Health : MonoBehaviour
     }
     public bool isDead;
     [HideInInspector] public UnityEvent onDead;
+
+    [Header("Safe Zone Logic")]
+    public bool isOutsideSafeZone;
+    [SerializeField] private float tickTimerDamageOutsideSafeZone;
+    [SerializeField] private float defaultTickTimerDamageOutsideSafeZone;
     void Start()
     {
         CurrentHp = maxHp;
@@ -28,7 +33,17 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        
+        DamageOutsideSafeZone();
+    }
+
+    void DamageOutsideSafeZone(){
+        if(isOutsideSafeZone){
+            tickTimerDamageOutsideSafeZone -= Time.deltaTime;
+            if(tickTimerDamageOutsideSafeZone <= 0){
+                TakeDamage(10);
+                tickTimerDamageOutsideSafeZone = defaultTickTimerDamageOutsideSafeZone;
+            }
+        }
     }
 
     public void TakeDamage(float damageAmount){

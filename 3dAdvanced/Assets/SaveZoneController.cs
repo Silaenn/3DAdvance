@@ -18,4 +18,16 @@ public class SaveZoneController : MonoBehaviour
             transform.localScale -= new Vector3(shrinkingSpeed, 0, shrinkingSpeed) * Time.deltaTime;
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.GetComponent<Health>()){
+            other.GetComponent<Health>().isOutsideSafeZone = false;
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if(other.GetComponent<Health>()){
+            other.GetComponent<Health>().isOutsideSafeZone = true;
+        }
+    }
 }

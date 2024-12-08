@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
     }
 
     public GameObject SpawnObjectAtRandomPos(GameObject objectToSpawn){
-        var randomSpawnPos = new Vector3(Random.Range(minMax_x.x, minMax_x.y), 15, Random.Range(minMax_z.x, minMax_z.y));
+        var randomSpawnPos = new Vector3(Random.Range(minMax_x.x, minMax_x.y), 10, Random.Range(minMax_z.x, minMax_z.y));
         return Instantiate(objectToSpawn, randomSpawnPos, Quaternion.identity);
     }
 }
