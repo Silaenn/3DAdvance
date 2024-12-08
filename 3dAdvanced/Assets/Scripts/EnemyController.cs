@@ -90,6 +90,8 @@ public class EnemyController : MonoBehaviour
 
     public void SetLookingForEnemyState(){
         if(enemyTarget != null) {
+            if (enemyManager.enemyHealth.isDead) return;
+
             if(enemyTarget.TryGetComponent(out Health health)){
                 enemyTargetHealth = health;
                 enemyTargetHealth.onDead.AddListener(TargetIsDead);
@@ -103,8 +105,11 @@ public class EnemyController : MonoBehaviour
     }
 
     public void SetAttackingEnemyState(){
+        if (enemyManager.enemyHealth.isDead) return;
+
         enemyTargetHealth = enemyTarget.GetComponent<Health>();
         enemyTargetHealth.onDead.AddListener(TargetIsDead);
+        
         eNEMY_STATE = ENEMY_STATE.ATTACKING_ENEMY;
         rifleModel.SetActive(true);
         enemyManager.enemyAnimation.animator.CrossFade(enemyManager.enemyAnimation.FIRING_RIFLE_ANIM, 0.2f);
@@ -112,6 +117,8 @@ public class EnemyController : MonoBehaviour
         navMeshAgent.isStopped = true;
     }
     public void SetEnemyIsDead(){
+        if (enemyManager.enemyHealth.isDead) return;
+
         if (enemyTargetHealth != null) {
             enemyTargetHealth.onDead.RemoveListener(TargetIsDead);
         }

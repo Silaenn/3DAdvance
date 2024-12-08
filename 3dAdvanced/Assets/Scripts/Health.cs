@@ -23,7 +23,7 @@ public class Health : MonoBehaviour
     [HideInInspector] public UnityEvent onDead;
     void Start()
     {
-        currentHp = maxHp;
+        CurrentHp = maxHp;
     }
 
     void Update()
@@ -45,5 +45,6 @@ public class Health : MonoBehaviour
         print("this carakter dead");
         onDead?.Invoke();
         isDead = true;
+        GameManager.Instance.DecreaseAliveCharacter(transform);
     }
 }

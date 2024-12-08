@@ -16,9 +16,13 @@ public class BulletProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.GetComponent<Health>()){
-            Instantiate(bloodVfx, transform.position, Quaternion.identity);
-            other.GetComponent<Health>().TakeDamage(bulletDamage);
-            Destroy(gameObject);
+            Health healthComponent = other.GetComponent<Health>();
+
+            if(healthComponent != null){
+                Instantiate(bloodVfx, transform.position, Quaternion.identity);
+                other.GetComponent<Health>().TakeDamage(bulletDamage);
+                Destroy(gameObject);
+            }
         }
     }
 }

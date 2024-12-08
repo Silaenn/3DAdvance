@@ -211,7 +211,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 5
-  m_Radius: 0.53
+  m_Radius: 0.59
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -322,6 +322,7 @@ MonoBehaviour:
   onDead:
     m_PersistentCalls:
       m_Calls: []
+  healthBarImage: {fileID: 0}
 --- !u!1 &8274071142193807970
 GameObject:
   m_ObjectHideFlags: 0
