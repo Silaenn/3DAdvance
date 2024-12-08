@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,12 +45,17 @@ public class GameManager : MonoBehaviour
         CurrentAliveCharacters = totalAliveCharacters;
     }
 
+    private void Update() {
+        RestartGame();
+    }
+
     public void DecreaseAliveCharacter(Transform deadCharacter){
         deadCharacter.parent = null;
         CurrentAliveCharacters--;
     }
 
     public void GameOver(){
+        Time.timeScale = 0.5f;
         gameOverCanvas.SetActive(true);
         rankText.text = $"Rank: {CurrentAliveCharacters + 1} / {totalAliveCharacters}";
         if(playerWin){
@@ -58,6 +64,12 @@ public class GameManager : MonoBehaviour
             loseCanvas.SetActive(true);
         }
         print("Game Over");
+    }
+
+    public void RestartGame(){
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
 }
