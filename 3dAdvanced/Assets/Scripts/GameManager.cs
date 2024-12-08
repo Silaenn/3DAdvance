@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject rifleLootPrefab;
     [SerializeField] private GameObject ammoLootPrefab;
     [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject dummyEnemyPrefab;
 
 
 
@@ -84,18 +85,32 @@ public class GameManager : MonoBehaviour
     }
 
     public void SpawnLogic(){
+        List<Transform> dummyEnemyTransforms = new List<Transform>();
         for (int i = 0; i < totalAliveCharacters; i++)
         {
-            GameObject enemy = SpawnObjectAtRandomPos(enemyPrefab);
-            enemy.transform.parent = charckterParent;
+            GameObject enemy = SpawnObjectAtRandomPos(dummyEnemyPrefab);
+            dummyEnemyTransforms.Add(enemy.transform);
             GameObject rifleLoot = SpawnObjectAtRandomPos(rifleLootPrefab);
             rifleLoot.transform.parent = weaponLootParent;
             SpawnObjectAtRandomPos(ammoLootPrefab);
         }
+
+        StartCoroutine(SpawnRealEnemeyCoroutine(dummyEnemyTransforms));
+    }
+
+    IEnumerator SpawnRealEnemeyCoroutine(List<Transform> dummyEnemyTransforms){
+        yield return new WaitForSeconds(1.5f);
+
+        foreach (var dummyEnemyTransform in dummyEnemyTransforms){
+            Vector3 dummyPos = dummyEnemyTransform.position;
+            Destroy(dummyEnemyTransform.gameObject);
+            var enemy = Instantiate(enemyPrefab, dummyPos, Quaternion.identity);
+            enemy.transform.parent = charckterParent;
+        }
     }
 
     public GameObject SpawnObjectAtRandomPos(GameObject objectToSpawn){
-        var randomSpawnPos = new Vector3(Random.Range(minMax_x.x, minMax_x.y), 6, Random.Range(minMax_z.x, minMax_z.y));
+        var randomSpawnPos = new Vector3(Random.Range(minMax_x.x, minMax_x.y), 15, Random.Range(minMax_z.x, minMax_z.y));
         return Instantiate(objectToSpawn, randomSpawnPos, Quaternion.identity);
     }
 }
