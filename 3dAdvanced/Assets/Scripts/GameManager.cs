@@ -86,10 +86,11 @@ public class GameManager : MonoBehaviour
     public void SpawnLogic(){
         for (int i = 0; i < totalAliveCharacters; i++)
         {
+            GameObject enemy = SpawnObjectAtRandomPos(enemyPrefab);
+            enemy.transform.parent = charckterParent;
             GameObject rifleLoot = SpawnObjectAtRandomPos(rifleLootPrefab);
             rifleLoot.transform.parent = weaponLootParent;
             SpawnObjectAtRandomPos(ammoLootPrefab);
-
         }
     }
 
