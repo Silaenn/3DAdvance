@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
@@ -18,6 +19,20 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float fireRateCd;
     [SerializeField] private float rifleAttackDamage;
     [SerializeField] private bool isAttackCd;
+
+    [Header("Ammo")]
+    [SerializeField] private int currentAmmo;
+    [SerializeField] private int defaultAmmo;
+    [SerializeField] private int maxAmmo;
+    [SerializeField] private TextMeshProUGUI ammoText;
+    public int CurrentAmmo {
+        get=> currentAmmo;
+        set{
+            currentAmmo = value;
+            ammoText.text = $"{currentAmmo} / {maxAmmo}";
+        }
+    }
+
 
     [Header("Visual Effects")]
     [SerializeField] private GameObject muzzleFlashVfx;
@@ -58,6 +73,7 @@ public class PlayerShoot : MonoBehaviour
     }
 
     public void OnGettingWeapon(){
+        CurrentAmmo = defaultAmmo;
         hasWeapon = true;
         rifleModel.SetActive(true);
         playerManager.playerAnimation.animator.SetInteger(playerManager.playerAnimation.WEAPON_STATE_ANIM_PARAM, 1);
@@ -87,9 +103,15 @@ public class PlayerShoot : MonoBehaviour
       void Shoot(){
 
         if (isAttackCd) return;
+        if (CurrentAmmo <= 0){
+            muzzleFlashVfx.SetActive(false);
+            return;
+        }
 
         muzzleFlashVfx.SetActive(true);
         StartCoroutine(ShootCoroutine());
+        CurrentAmmo--;
+
         if(Physics.Raycast(mainCamera.position, mainCamera.forward, out RaycastHit hit , shootingRange)){
             GameObject effect = null;
             if(hit.collider.GetComponent<Health>()){
@@ -101,6 +123,10 @@ public class PlayerShoot : MonoBehaviour
             }
             effect.transform.LookAt(transform);
         }
+    }
+
+    public void GetAmmo(){
+        CurrentAmmo += 50;
     }
 
     public void OnDead(){
