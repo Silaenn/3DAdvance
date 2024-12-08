@@ -117,7 +117,7 @@ public class EnemyController : MonoBehaviour
         navMeshAgent.isStopped = true;
     }
     public void SetEnemyIsDead(){
-        if (enemyManager.enemyHealth.isDead) return;
+        // if (enemyManager.enemyHealth.isDead) return;
 
         if (enemyTargetHealth != null) {
             enemyTargetHealth.onDead.RemoveListener(TargetIsDead);

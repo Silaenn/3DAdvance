@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
             currentAliveCharacters = value;
             characterAliveText.text = $"Total Alive: {currentAliveCharacters} / {totalAliveCharacters}";
             if(currentAliveCharacters <= 1){
+                playerWin = true;
                 GameOver();
             }
         }
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame(){
         if(Input.GetKeyDown(KeyCode.Escape)){
+            Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
