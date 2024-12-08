@@ -10,8 +10,11 @@ public enum LootItemType{
 public class LootItem : MonoBehaviour
 {
     public LootItemType lootItemType;
-   
+
    private void OnTriggerEnter(Collider other) {
+
+    switch(lootItemType){
+        case LootItemType.RIFLE: 
      if(other.GetComponent<CharackterTag>()){
         if(other.TryGetComponent(out PlayerShoot playerShoot)){
             playerShoot.OnGettingWeapon();
@@ -21,6 +24,14 @@ public class LootItem : MonoBehaviour
             enemyController.SetLookingForEnemyState();
             Destroy(gameObject);
         } 
-     }
+     }; break;
+
+     case LootItemType.AMMO: 
+        if(other.GetComponent<PlayerShoot>()){
+            other.GetComponent<PlayerShoot>().GetAmmo();
+            Destroy(gameObject);
+        }
+     break;
+    }
    }
 }
