@@ -16,6 +16,14 @@ public class GameManager : MonoBehaviour
     public Transform weaponLootParent;
     public Transform charckterParent;
 
+    [Header("Spawner")]
+    [SerializeField] private Vector2 minMax_x, minMax_z;
+    [SerializeField] private GameObject rifleLootPrefab;
+    [SerializeField] private GameObject ammoLootPrefab;
+    [SerializeField] private GameObject enemyPrefab;
+
+
+
     [Header("Progress Battle Royale")]
     public int totalAliveCharacters;
     public int currentAliveCharacters;
@@ -42,8 +50,8 @@ public class GameManager : MonoBehaviour
     public bool playerWin;
 
     private void Start() {
-        totalAliveCharacters = charckterParent.childCount;
         CurrentAliveCharacters = totalAliveCharacters;
+        SpawnLogic();
     }
 
     private void Update() {
@@ -75,4 +83,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SpawnLogic(){
+        for (int i = 0; i < totalAliveCharacters; i++)
+        {
+            GameObject rifleLoot = SpawnObjectAtRandomPos(rifleLootPrefab);
+            rifleLoot.transform.parent = weaponLootParent;
+            SpawnObjectAtRandomPos(ammoLootPrefab);
+
+        }
+    }
+
+    public GameObject SpawnObjectAtRandomPos(GameObject objectToSpawn){
+        var randomSpawnPos = new Vector3(Random.Range(minMax_x.x, minMax_x.y), 6, Random.Range(minMax_z.x, minMax_z.y));
+        return Instantiate(objectToSpawn, randomSpawnPos, Quaternion.identity);
+    }
 }
