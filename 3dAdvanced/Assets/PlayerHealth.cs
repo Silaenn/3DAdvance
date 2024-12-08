@@ -22,5 +22,7 @@ public class PlayerHealth : Health
         base.Dead();
         playerManager.playerShoot.OnDead();
         playerManager.playerAnimation.animator.CrossFade(playerManager.playerAnimation.DEATH_ANIM, 0.2f);
+        GameManager.Instance.playerWin = false;
+        GameManager.Instance.GameOver();
     }
 }

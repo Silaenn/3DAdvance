@@ -10,9 +10,12 @@ public class GameManager : MonoBehaviour
     private void Awake() {
         Instance = this;
     }
+
+    [Header("Unit Parent")]
     public Transform weaponLootParent;
     public Transform charckterParent;
 
+    [Header("Progress Battle Royale")]
     public int totalAliveCharacters;
     public int currentAliveCharacters;
     public int CurrentAliveCharacters{
@@ -26,8 +29,15 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     public TextMeshProUGUI characterAliveText;
+
+    [Header("Game Over")]
+    public GameObject gameOverCanvas;
+    public TextMeshProUGUI rankText;
+    public GameObject winCanvas;
+    public GameObject loseCanvas;
+
+    public bool playerWin;
 
     private void Start() {
         totalAliveCharacters = charckterParent.childCount;
@@ -40,6 +50,13 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver(){
+        gameOverCanvas.SetActive(true);
+        rankText.text = $"Rank: {CurrentAliveCharacters + 1} / {totalAliveCharacters}";
+        if(playerWin){
+            winCanvas.SetActive(true);
+        } else{
+            loseCanvas.SetActive(true);
+        }
         print("Game Over");
     }
 
