@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4456401426768165331}
   - component: {fileID: 875380058697554515}
   - component: {fileID: 9046650670759085913}
-  - component: {fileID: 2251775463857837994}
   - component: {fileID: 861741461425932525}
   - component: {fileID: 4653771057090828577}
   - component: {fileID: 332298574599154709}
@@ -127,27 +126,6 @@ MonoBehaviour:
   defaultTickTimerDamageOutsideSafeZone: 1
   aliveColider: {fileID: 6253599458404104552}
   deadColider: {fileID: 861741461425932525}
---- !u!114 &2251775463857837994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2233508560471107408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c0d6b90a5556ae4d8b6394a7ea31187, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 100
-  currentHp: 0
-  isDead: 0
-  onDead:
-    m_PersistentCalls:
-      m_Calls: []
-  isOutsideSafeZone: 0
-  tickTimerDamageOutsideSafeZone: 0
-  defaultTickTimerDamageOutsideSafeZone: 0
 --- !u!65 &861741461425932525
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -181,11 +159,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1bc87c218083124e8dc8ca31adbf0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAmmo: 0
+  defaultAmmo: 50
+  maxAmmo: 250
   eNEMY_STATE: 0
   movementSpeed: 5
   enemyTarget: {fileID: 0}
   weaponLootParent: {fileID: 0}
   charckterParent: {fileID: 0}
+  ammoParent: {fileID: 0}
   rifleModel: {fileID: 86351022082765715}
   muzzleFlashVfx: {fileID: 9163678497159532815}
   shootPoint: {fileID: 4964870662219631913}

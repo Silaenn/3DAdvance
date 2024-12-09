@@ -40,7 +40,7 @@ public class Health : MonoBehaviour
         if(isOutsideSafeZone){
             tickTimerDamageOutsideSafeZone -= Time.deltaTime;
             if(tickTimerDamageOutsideSafeZone <= 0){
-                TakeDamage(10);
+                TakeDamage(5);
                 tickTimerDamageOutsideSafeZone = defaultTickTimerDamageOutsideSafeZone;
             }
         }

@@ -1,4 +1,4 @@
-using System.Collections;
+  using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,7 +11,7 @@ public enum ENEMY_STATE{
     ATTACKING_ENEMY,
     IS_DEAD
 }
-public class EnemyController : MonoBehaviour
+public class EnemyController : Ammo
 {
     [SerializeField] private ENEMY_STATE eNEMY_STATE;
     [SerializeField] private float movementSpeed;
@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
     public Transform enemyTarget;
     public Transform weaponLootParent;
     public Transform charckterParent;
+    public Transform ammoParent;
     [SerializeField] private GameObject rifleModel;
     [SerializeField] private GameObject muzzleFlashVfx;
     [SerializeField] private Transform shootPoint;
@@ -44,6 +45,7 @@ public class EnemyController : MonoBehaviour
     private void Start() {
         weaponLootParent = GameManager.Instance.weaponLootParent;
         charckterParent = GameManager.Instance.charckterParent;
+        ammoParent = GameManager.Instance.ammoLootParent;
         eNEMY_STATE = ENEMY_STATE.LOOKING_FOR_WEAPON;
     }
 
@@ -56,6 +58,7 @@ public class EnemyController : MonoBehaviour
             {
             enemyTarget = FindNearestTarget(weaponLootParent).transform; 
             navMeshAgent.destination = enemyTarget.position;
+            CurrentAmmo = defaultAmmo;
             }
             catch (System.Exception e)
             {
@@ -65,11 +68,17 @@ public class EnemyController : MonoBehaviour
             case ENEMY_STATE.LOOKING_FOR_ENEMY: 
               try
               {
-              enemyTarget = FindNearestTarget(charckterParent).transform; 
-              navMeshAgent.destination = enemyTarget.position;  
-              if(Vector3.Distance(transform.position, enemyTarget.position) < startShootingRange){
+               if(CurrentAmmo <= 0) {
+                enemyTarget = FindNearestTarget(ammoParent).transform;
+                navMeshAgent.destination = enemyTarget.position;
+               } else {
+                enemyTarget = FindNearestTarget(charckterParent).transform; 
+                navMeshAgent.destination = enemyTarget.position;  
+                if(Vector3.Distance(transform.position, enemyTarget.position) < startShootingRange){
                   SetAttackingEnemyState();
-              } 
+                 } 
+               }
+              
             }
               catch (System.Exception)
               {
@@ -157,9 +166,16 @@ public class EnemyController : MonoBehaviour
 
     void Shoot(){
         transform.LookAt(enemyTarget);
+        if (CurrentAmmo <= 0){
+            muzzleFlashVfx.SetActive(false);
+            enemyManager.enemyAnimation.animator.CrossFade(enemyManager.enemyAnimation.RIFLE_RUN_ANIM, 0.2f);
+
+            return;
+        }
         shootingCd -= Time.deltaTime;
         if (shootingCd <= 0){
             shootingCd = defaultShootingCd;
+            CurrentAmmo--;
             Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
         }
     }

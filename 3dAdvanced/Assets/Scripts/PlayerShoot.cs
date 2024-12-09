@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerShoot : MonoBehaviour
+public class PlayerShoot : Ammo
 {
     [Header("Player State")]
     public bool isAiming;
@@ -21,18 +21,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private bool isAttackCd;
 
     [Header("Ammo")]
-    [SerializeField] private int currentAmmo;
-    [SerializeField] private int defaultAmmo;
-    [SerializeField] private int maxAmmo;
     [SerializeField] private TextMeshProUGUI ammoText;
-    public int CurrentAmmo {
-        get=> currentAmmo;
-        set{
-            currentAmmo = value;
-            ammoText.text = $"{currentAmmo} / {maxAmmo}";
-        }
-    }
-
 
     [Header("Visual Effects")]
     [SerializeField] private GameObject muzzleFlashVfx;
@@ -48,7 +37,7 @@ public class PlayerShoot : MonoBehaviour
     void Update()
     {   
         if(playerManager.playerHealth.isDead) return;
-
+        ammoText.text = $"{currentAmmo} / {maxAmmo}";
         AimShot();
         ShootInput();
     }
@@ -101,7 +90,6 @@ public class PlayerShoot : MonoBehaviour
         isAttackCd = false;
     }
       void Shoot(){
-
         if (isAttackCd) return;
         if (CurrentAmmo <= 0){
             muzzleFlashVfx.SetActive(false);
@@ -123,10 +111,6 @@ public class PlayerShoot : MonoBehaviour
             }
             effect.transform.LookAt(transform);
         }
-    }
-
-    public void GetAmmo(){
-        CurrentAmmo += 50;
     }
 
     public void OnDead(){

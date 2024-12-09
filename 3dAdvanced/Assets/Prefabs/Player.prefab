@@ -281,8 +281,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 718221e4f044d2640a13e0bd52ce9d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAmmo: 0
+  defaultAmmo: 50
+  maxAmmo: 250
   isAiming: 0
-  hasWeapon: 1
+  hasWeapon: 0
   aimingCam: {fileID: 9218519904107201637}
   mainCamera: {fileID: 0}
   rifleModel: {fileID: 6243843826958062852}
@@ -290,9 +293,6 @@ MonoBehaviour:
   fireRateCd: 0.1
   rifleAttackDamage: 5
   isAttackCd: 0
-  currentAmmo: 0
-  defaultAmmo: 0
-  maxAmmo: 0
   ammoText: {fileID: 0}
   muzzleFlashVfx: {fileID: 7971028076902655706}
   bulletImpactVfx: {fileID: 100002, guid: ac1aa04288fad804ba1cd769f4377aaf, type: 3}
@@ -329,7 +329,7 @@ MonoBehaviour:
       m_Calls: []
   isOutsideSafeZone: 0
   tickTimerDamageOutsideSafeZone: 0
-  defaultTickTimerDamageOutsideSafeZone: 0
+  defaultTickTimerDamageOutsideSafeZone: 1
   healthBarImage: {fileID: 0}
 --- !u!1 &8274071142193807970
 GameObject:

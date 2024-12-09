@@ -31,6 +31,10 @@ public class LootItem : MonoBehaviour
             other.GetComponent<PlayerShoot>().GetAmmo();
             Destroy(gameObject);
         }
+        if(other.GetComponent<EnemyController>()){
+            other.GetComponent<EnemyController>().GetAmmo();
+            Destroy(gameObject);
+        }
      break;
     }
    }
