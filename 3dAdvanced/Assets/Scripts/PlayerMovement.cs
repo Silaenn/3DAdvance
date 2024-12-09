@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float movementSpeed;
+    [SerializeField] private float runSpeed;
     private CharacterController _characterController;
 
     [Header("Gravity")]
@@ -93,7 +94,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void MoveCharacter(Vector3 move){
-         _characterController.Move(move.normalized * movementSpeed * Time.deltaTime);
+        float Speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : movementSpeed;
+         _characterController.Move(move.normalized * Speed * Time.deltaTime);
     }
 
   

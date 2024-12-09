@@ -230,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
+  runSpeed: 15
   gravity: -9.81
   groundChecker: {fileID: 6137009552288358868}
   groundCheckRadius: 0.4
@@ -289,6 +290,10 @@ MonoBehaviour:
   fireRateCd: 0.1
   rifleAttackDamage: 5
   isAttackCd: 0
+  currentAmmo: 0
+  defaultAmmo: 0
+  maxAmmo: 0
+  ammoText: {fileID: 0}
   muzzleFlashVfx: {fileID: 7971028076902655706}
   bulletImpactVfx: {fileID: 100002, guid: ac1aa04288fad804ba1cd769f4377aaf, type: 3}
   bloodImpactVfx: {fileID: 5179497119465001873, guid: cb8555587d8ea2b4d82ded02b282f8c5, type: 3}
@@ -322,6 +327,9 @@ MonoBehaviour:
   onDead:
     m_PersistentCalls:
       m_Calls: []
+  isOutsideSafeZone: 0
+  tickTimerDamageOutsideSafeZone: 0
+  defaultTickTimerDamageOutsideSafeZone: 0
   healthBarImage: {fileID: 0}
 --- !u!1 &8274071142193807970
 GameObject:
