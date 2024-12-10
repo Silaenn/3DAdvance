@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAmmo: 0
-  defaultAmmo: 50
+  defaultAmmo: 10
   maxAmmo: 250
   eNEMY_STATE: 0
   movementSpeed: 5

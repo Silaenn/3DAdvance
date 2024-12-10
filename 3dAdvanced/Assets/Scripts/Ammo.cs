@@ -7,6 +7,7 @@ public class Ammo : MonoBehaviour
     [SerializeField] protected int currentAmmo;
     [SerializeField] protected int defaultAmmo;
     [SerializeField] protected int maxAmmo;
+    public bool isAmmo;
     public int CurrentAmmo {
         get=> currentAmmo;
         set{

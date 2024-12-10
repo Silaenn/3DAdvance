@@ -91,11 +91,14 @@ public class GameManager : MonoBehaviour
         {
             GameObject enemy = SpawnObjectAtRandomPos(dummyEnemyPrefab);
             dummyEnemyTransforms.Add(enemy.transform);
-            GameObject rifleLoot = SpawnObjectAtRandomPos(rifleLootPrefab);
-            rifleLoot.transform.parent = weaponLootParent;
+        }
+
+        int extraAmmouCount = totalAliveCharacters * 2;
+        for(int i = 0; i < extraAmmouCount; i++){
             GameObject ammoLoot = SpawnObjectAtRandomPos(ammoLootPrefab);
             ammoLoot.transform.parent = ammoLootParent;
-
+             GameObject rifleLoot = SpawnObjectAtRandomPos(rifleLootPrefab);
+            rifleLoot.transform.parent = weaponLootParent;
         }
 
         StartCoroutine(SpawnRealEnemeyCoroutine(dummyEnemyTransforms));
@@ -113,7 +116,7 @@ public class GameManager : MonoBehaviour
     }
 
     public GameObject SpawnObjectAtRandomPos(GameObject objectToSpawn){
-        var randomSpawnPos = new Vector3(Random.Range(minMax_x.x, minMax_x.y), 13, Random.Range(minMax_z.x, minMax_z.y));
+        var randomSpawnPos = new Vector3(Random.Range(minMax_x.x, minMax_x.y), 10, Random.Range(minMax_z.x, minMax_z.y));
         return Instantiate(objectToSpawn, randomSpawnPos, Quaternion.identity);
     }
 }

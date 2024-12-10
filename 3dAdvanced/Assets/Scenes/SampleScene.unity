@@ -587,6 +587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponLootParent: {fileID: 1061748450}
+  ammoLootParent: {fileID: 1143381776}
   charckterParent: {fileID: 1020309012}
   minMax_x: {x: -89.7, y: 108.9}
   minMax_z: {x: -69.4, y: 106.6}
@@ -617,6 +618,7 @@ Transform:
   m_Children:
   - {fileID: 1061748450}
   - {fileID: 1020309012}
+  - {fileID: 1143381776}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &777683938
@@ -1590,6 +1592,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128837777}
   m_CullTransparentMesh: 1
+--- !u!1 &1143381775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1143381776}
+  m_Layer: 0
+  m_Name: AmmoLootParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1143381776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143381775}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 724295938}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1236814786
 GameObject:
   m_ObjectHideFlags: 3
@@ -2305,7 +2338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1758217072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3036,10 +3069,6 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6893236453651224875, guid: a7447e494dfc72c45b83d39f9ab7ae67, type: 3}
-      propertyPath: runSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6893236453651224875, guid: a7447e494dfc72c45b83d39f9ab7ae67, type: 3}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 963194228}
@@ -3047,14 +3076,6 @@ PrefabInstance:
       propertyPath: healthBarImage
       value: 
       objectReference: {fileID: 18800812}
-    - target: {fileID: 7758976799443128896, guid: a7447e494dfc72c45b83d39f9ab7ae67, type: 3}
-      propertyPath: defaultTickTimerDamageOutsideSafeZone
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8986940362359736973, guid: a7447e494dfc72c45b83d39f9ab7ae67, type: 3}
-      propertyPath: maxAmmo
-      value: 250
-      objectReference: {fileID: 0}
     - target: {fileID: 8986940362359736973, guid: a7447e494dfc72c45b83d39f9ab7ae67, type: 3}
       propertyPath: ammoText
       value: 
@@ -3063,14 +3084,6 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 963194228}
-    - target: {fileID: 8986940362359736973, guid: a7447e494dfc72c45b83d39f9ab7ae67, type: 3}
-      propertyPath: defaultAmmo
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8986940362359736973, guid: a7447e494dfc72c45b83d39f9ab7ae67, type: 3}
-      propertyPath: rifleAttackDamage
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

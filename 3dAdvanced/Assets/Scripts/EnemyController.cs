@@ -1,4 +1,4 @@
-  using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,6 +7,7 @@ using UnityEngine.AI;
 
 public enum ENEMY_STATE{
     LOOKING_FOR_WEAPON,
+    LOOKING_FOR_AMMO,
     LOOKING_FOR_ENEMY,
     ATTACKING_ENEMY,
     IS_DEAD
@@ -47,6 +48,7 @@ public class EnemyController : Ammo
         charckterParent = GameManager.Instance.charckterParent;
         ammoParent = GameManager.Instance.ammoLootParent;
         eNEMY_STATE = ENEMY_STATE.LOOKING_FOR_WEAPON;
+        CurrentAmmo = defaultAmmo;
     }
 
     private void Update() {
@@ -58,7 +60,6 @@ public class EnemyController : Ammo
             {
             enemyTarget = FindNearestTarget(weaponLootParent).transform; 
             navMeshAgent.destination = enemyTarget.position;
-            CurrentAmmo = defaultAmmo;
             }
             catch (System.Exception e)
             {
@@ -68,23 +69,32 @@ public class EnemyController : Ammo
             case ENEMY_STATE.LOOKING_FOR_ENEMY: 
               try
               {
-               if(CurrentAmmo <= 0) {
-                enemyTarget = FindNearestTarget(ammoParent).transform;
-                navMeshAgent.destination = enemyTarget.position;
-               } else {
-                enemyTarget = FindNearestTarget(charckterParent).transform; 
-                navMeshAgent.destination = enemyTarget.position;  
-                if(Vector3.Distance(transform.position, enemyTarget.position) < startShootingRange){
+              enemyTarget = FindNearestTarget(charckterParent).transform; 
+              navMeshAgent.destination = enemyTarget.position;  
+              if(Vector3.Distance(transform.position, enemyTarget.position) < startShootingRange){
                   SetAttackingEnemyState();
-                 } 
-               }
-              
+              } 
             }
               catch (System.Exception)
               {
                 print("Target not found");
               } 
             ; break;
+            case ENEMY_STATE.LOOKING_FOR_AMMO:
+            try
+            {
+                enemyTarget = FindNearestTarget(ammoParent).transform;
+                navMeshAgent.destination = enemyTarget.position;
+                if(isAmmo){
+                    eNEMY_STATE = ENEMY_STATE.LOOKING_FOR_ENEMY;
+                    return;
+                }
+
+            }
+            catch (System.Exception)
+            {
+                print("Target not Found Ammo");
+            } break;
             case ENEMY_STATE.ATTACKING_ENEMY:  
                Shoot();
                if(Vector3.Distance(transform.position, enemyTarget.position) > stopShootingRange){
@@ -166,18 +176,18 @@ public class EnemyController : Ammo
 
     void Shoot(){
         transform.LookAt(enemyTarget);
+        shootingCd -= Time.deltaTime;
         if (CurrentAmmo <= 0){
             muzzleFlashVfx.SetActive(false);
             enemyManager.enemyAnimation.animator.CrossFade(enemyManager.enemyAnimation.RIFLE_RUN_ANIM, 0.2f);
-
+            eNEMY_STATE = ENEMY_STATE.LOOKING_FOR_AMMO;
+            navMeshAgent.isStopped = false;
             return;
         }
-        shootingCd -= Time.deltaTime;
         if (shootingCd <= 0){
-            shootingCd = defaultShootingCd;
             CurrentAmmo--;
+            shootingCd = defaultShootingCd;
             Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
         }
     }
-  
 }
