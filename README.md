@@ -1,6 +1,5 @@
-<h1 style="color: red">Learn 3D Advance</h1>
-
-<h4>Battle Ground</h4>
+3D Battleground Project 🎮
+Welcome to the 3D Battleground project! This repository is my personal learning space to explore and develop a dynamic 3D game environment using Unity. The game features a battleground where players can engage in combat, test mechanics, and improve gameplay strategies. 🚀
 
 ![Screenshot 2024-12-10 220945](https://github.com/user-attachments/assets/3965f698-8eb1-4277-aea4-defd53370f3b)
 
