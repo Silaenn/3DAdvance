@@ -1,8 +1,8 @@
-<p style="font-size: 36px;">3D Battleground Project 🎮</p>
+<h1 style="font-size: 36px;">3D Battleground Project 🎮</h1>
 
 Welcome to the 3D Battleground project! This repository is my personal learning space to explore and develop a dynamic 3D game environment using Unity. The game features a battleground where players can engage in combat, test mechanics, and improve gameplay strategies. 🚀
 
-<p style="font-size: 36px;">Features ✨</p>
+<h1 style="font-size: 36px;">Features ✨</h1>
 3D Environment: Immersive battleground arena with realistic terrain and props.
 Player Mechanics: Basic player controls, including movement, jumping, and combat.
 AI Opponents: Enemy characters with simple behavior patterns for engaging battles.
