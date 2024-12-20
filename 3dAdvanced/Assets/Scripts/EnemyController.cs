@@ -72,7 +72,12 @@ public class EnemyController : Ammo
               enemyTarget = FindNearestTarget(charckterParent).transform; 
               navMeshAgent.destination = enemyTarget.position;  
               if(Vector3.Distance(transform.position, enemyTarget.position) < startShootingRange){
-                  SetAttackingEnemyState();
+                 if (CurrentAmmo > 0) {
+                SetAttackingEnemyState();
+            } else {
+                eNEMY_STATE = ENEMY_STATE.LOOKING_FOR_AMMO;
+                enemyTarget = null;
+            }
               } 
             }
               catch (System.Exception)
@@ -87,7 +92,7 @@ public class EnemyController : Ammo
                 navMeshAgent.destination = enemyTarget.position;
                 if(isAmmo){
                     eNEMY_STATE = ENEMY_STATE.LOOKING_FOR_ENEMY;
-                    return;
+                    enemyTarget = null;
                 }
 
             }
@@ -97,6 +102,12 @@ public class EnemyController : Ammo
             } break;
             case ENEMY_STATE.ATTACKING_ENEMY:  
                Shoot();
+                if (CurrentAmmo <= 0) {
+                    eNEMY_STATE = ENEMY_STATE.LOOKING_FOR_AMMO;
+                    navMeshAgent.isStopped = false;
+                    enemyTarget = null;
+                    break;
+                 }
                if(Vector3.Distance(transform.position, enemyTarget.position) > stopShootingRange){
                   SetLookingForEnemyState();
               } 
