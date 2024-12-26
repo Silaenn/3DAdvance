@@ -20,10 +20,10 @@ Optimizing game performance and debugging.
 
 
 ## Download Game
-[Klik di sini untuk mengunduh game](https://drive.google.com/uc?export=download&id=1Dla9o_rbsYSf5t0ccpVvWkK2NJyb9ByJ)
+[Click here to download the game](https://drive.google.com/uc?export=download&id=1Dla9o_rbsYSf5t0ccpVvWkK2NJyb9ByJ)
 
 
-<br><br><br><br>
+<br><br>
 
 
 
