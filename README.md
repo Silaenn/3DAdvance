@@ -1,4 +1,4 @@
-<h1 style="font-size: 36px;">3D Battleground Project t🎮</h1>
+<h1 style="font-size: 36px;">3D Battleground Project 🎮</h1>
 
 Welcome to the 3D Battleground project! This repository is my personal learning space to explore and develop a dynamic 3D game environment using Unity. The game features a battleground where players can engage in combat, test mechanics, and improve gameplay strategies. 🚀
 
